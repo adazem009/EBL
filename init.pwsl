@@ -1,0 +1,55 @@
+// EarthOS BootLoader
+// 2020 - adazem009
+//
+// Define functions
+define/"render_ebl"
+{
+	getlistlength/"names"/"elen"
+	clear
+	print/"----- EBL (by adazem009) -----",\n
+	set/"i",0
+	repeat/elen
+		calc/"i=i+1"
+		getitem/"names",i/"item"
+		if/[selected == i]
+			print/\n,"[*] ",item
+		else
+			print/\n,"[ ] ",item
+		endif
+	endloop
+}
+// Setup lists
+setlist/"names"
+setlist/"paths"
+setlist/"args"
+// Find entries
+getfile/"entries.list"/"entries"
+getlistlength/"entries"/"elen"
+set/"ei",0
+repeat/elen
+	calc/"ei=ei+1"
+	getitem/"entries",ei/"item"
+	source/"entry.smc"/item
+endloop
+// Render and/or continue
+set/"selected",1/"key",""
+if/[elen > 1]
+	while/[key != "enter"]
+		render_ebl
+		getkey
+		if/[key == "up arrow"]
+			if/[selected < elen]
+				calc/"selected=selected+1"
+			endif
+		elseif/[key == "down arrow"]
+			if/[selected > 1]
+				calc/"selected=selected-1"
+			endif
+		endif
+	endloop
+elseif/[elen == 0]
+	clear
+	print/"Error: No boot entries found"
+endif
+getitem/"paths",selected/"path"
+run/"path"/"bg"/args

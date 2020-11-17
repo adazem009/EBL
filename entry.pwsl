@@ -1,0 +1,47 @@
+// Get args
+getitem/"arg_1",1/"eblc"
+// Define functions
+define/"conf_item"
+{
+	// Get args
+	getitem/"arg_1",1/"id"
+	getitem/"config",id/"item"
+	// Process item
+	set/"str",""
+	getlength/item/"len2"
+	set/"i2",0
+	while/[i2 < len2] and [letter != "="]
+		calc/"i2=i2+1"
+		getletter/item/"letter"
+		if/[letter != "="]
+			set/"str",str,letter
+		endif
+	endloop
+	if/[i2 >= len2]
+		print/\n,"Error: invalid config file (",eblc,")"
+		while/[true]
+			// stuck
+		endloop
+	set/"name",str
+	set/"str",""
+	while/[i2 < len2]
+		calc/"i2=i2+1"
+		getletter/item/"letter"
+		set/"str",str,letter
+	endloop
+	set/"value",str
+}
+// Process config file
+getfile/eblc/"config"
+getlistlength/"config"/"len"
+set/"i",0
+repeat/len
+	calc/"i=i+1"
+	conf_item/i
+	set/"temp","conf_",name
+	set/temp,value
+endloop
+// Add boot entry
+append/conf_name/"names"
+append/conf_continue/"paths"
+append/conf_args/"args"
