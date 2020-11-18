@@ -34,7 +34,7 @@ set/"selected",1/"key",""
 if/[elen > 1]
 	while/[key != "enter"]
 		render_ebl
-		getkey
+		getkey/"key"
 		if/[key == "up arrow"]
 			if/[selected < elen]
 				calc/"selected=selected+1"
