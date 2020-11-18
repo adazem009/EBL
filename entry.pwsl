@@ -12,7 +12,7 @@ define/"conf_item"
 	set/"i2",0
 	while/[i2 < len2] and [letter != "="]
 		calc/"i2=i2+1"
-		getletter/item/"letter"
+		getletter/item,i2/"letter"
 		if/[letter != "="]
 			set/"str",str,letter
 		endif
