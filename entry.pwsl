@@ -26,7 +26,7 @@ define/"conf_item"
 	set/"str",""
 	while/[i2 < len2]
 		calc/"i2=i2+1"
-		getletter/item/"letter"
+		getletter/item,i2/"letter"
 		set/"str",str,letter
 	endloop
 	set/"value",str
