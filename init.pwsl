@@ -34,8 +34,9 @@ repeat/elen
 endloop
 // Render and/or continue
 set/"selected",1/"key",""
+print/\n,elen
 if/[elen > 1]
-	while/[key != "enter"]
+	while/![key == "enter"]
 		render_ebl
 		getkey/"keys"
 		getitem/"keys",1/"key"
@@ -52,6 +53,10 @@ if/[elen > 1]
 elseif/[elen == 0]
 	clear
 	print/"Error: No boot entries found"
+	while/[true]
+		// stuck
+	endloop
 endif
 getitem/"paths",selected/"path"
-run/"path"/"bg"/args
+getitem/"args",selected/"arg"
+run/path/"bg"/arg
