@@ -13,5 +13,5 @@ Config file example:
 ```
 name=EarthOS
 continue=/init.smc
-args="GUI","420x360"/"something"
+arg=something
 ```
