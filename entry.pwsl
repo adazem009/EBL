@@ -9,19 +9,27 @@ define/"conf_item"
 	// Process item
 	set/"str",""
 	getlength/item/"len2"
+	set/"end",0
 	set/"i2",0
-	while/[i2 < len2] and [letter != "="]
+	while/[end == "0"]
 		calc/"i2=i2+1"
 		getletter/item,i2/"letter"
-		if/[letter != "="]
+		if/[i2 == len2]
+			set/"end",1
+		endif
+		if/[letter == "="]
+			set/"end",1
+		else
 			set/"str",str,letter
 		endif
 	endloop
 	if/[i2 >= len2]
+		clear
 		print/\n,"Error: invalid config file (",eblc,")"
 		while/[true]
 			// stuck
 		endloop
+	endif
 	set/"name",str
 	set/"str",""
 	while/[i2 < len2]
@@ -44,4 +52,4 @@ endloop
 // Add boot entry
 append/conf_name/"names"
 append/conf_continue/"paths"
-append/conf_args/"args"
+append/conf_arg/"args"
