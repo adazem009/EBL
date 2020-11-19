@@ -20,6 +20,9 @@ define/"render_ebl"
 }
 // Setup lists
 setlist/"names","paths","args"
+// Go to EBL root
+getlocation/"loc"
+cd/loc
 // Find entries
 getfile/"entries.list"/"entries"
 getlistlength/"entries"/"elen"
