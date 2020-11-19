@@ -34,7 +34,6 @@ repeat/elen
 endloop
 // Render and/or continue
 set/"selected",1/"key",""
-print/\n,elen
 if/[elen > 1]
 	while/![key == "enter"]
 		render_ebl
