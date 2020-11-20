@@ -30,7 +30,7 @@ rm -rf ./content/os/ebl/.git
 rm ./content/os/ebl/LICENSE
 rm ./content/os/ebl/README.md
 ```
-You may want to add a boot entry to your OS:
+You may want to add a boot entry for your OS:
 
 If you want to use multiple boot entries:
 ```
