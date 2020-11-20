@@ -34,10 +34,18 @@ You may want to add a boot entry for your OS:
 
 If you want to use multiple boot entries:
 ```
-echo "/boot/entry.conf" >> ./content/os/ebl/entries.list
+echo "/boot/entry1.conf" > ./content/os/ebl/entries.list
+echo "/boot/entry2.conf" >> ./content/os/ebl/entries.list
+...
 ```
 If you want to use 1 boot entry:
 ```
 echo "/boot/entry.conf" > ./content/os/ebl/entries.list
 ```
 As mentioned in the PowerSlash-Builder readme, you'll need to replace `os` with your partition's path.
+
+Also make sure to include these lines in your `boot.pwsl` script to boot EBL:
+```
+print/"Loading EBL...",\n
+run/"/ebl/init.smc"/"bg"
+```
